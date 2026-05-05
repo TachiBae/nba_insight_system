@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Team Stats</h1>
+
+{% if stats %}
+<table>
+    <tr><th>Team</th><th>Avg Score</th><th>Avg Turnovers</th></tr>
+    <tr>
+        <td>{{ stats[0] }}</td>
+        <td>{{ "%.1f"|format(stats[1]) }}</td>
+        <td>{{ "%.1f"|format(stats[2]) }}</td>
+    </tr>
+</table>
+{% else %}
+<p>No stats found for this team.</p>
+{% endif %}
+
+<a href='/teams'>← Back to Teams</a>
+
+{% endblock %}

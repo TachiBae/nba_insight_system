@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Player Search</h1>
+
+
+<form method='GET' action='/players'>
+    <input type='text' name='name' placeholder='Search player...' value='{{ name }}'>
+    <button type='submit'>Search</button>
+</form>
+
+
+{% if results %}
+<table>
+    <tr><th>ID</th><th>Name</th><th>Team</th></tr>
+    {% for row in results %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td><a href='/players/{{ row[0] }}'>{{ row[1] }}</a></td>
+        <td>{{ row[2] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No players found.</p>
+{% endif %}
+
+
+{% endblock %}
+
