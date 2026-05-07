@@ -61,8 +61,14 @@ def comparison_view():
 # ── Trend Analysis ─────────────────────────────
 @app.route('/trends')
 def trends_view():
-    pid    = request.args.get('pid')
-    n      = request.args.get('n', 10)
+    pid   = request.args.get('pid')
+    n_raw = request.args.get('n', 10)
+    try:
+        n = int(n_raw)
+    except (TypeError, ValueError):
+        n = 10
+    if n <= 0:
+        n = 10
     rows, avg_pts, streak = trends.get_trends(pid, n) if pid else ([], 0, '')
     return render_template('trends.html', rows=rows,
                            avg_pts=avg_pts, streak=streak)
@@ -71,6 +77,3 @@ def trends_view():
 # ── Run the App ────────────────────────────────
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-

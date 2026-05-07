@@ -1,24 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Player Comparison</h1>
+<section class="card">
+    <h1>Player Comparison</h1>
+    <p class="muted">Compare two players with a side-by-side stat view.</p>
 
-<form method='GET' action='/comparison'>
-    <input type='number' name='pid1' placeholder='Player 1 ID'>
-    <input type='number' name='pid2' placeholder='Player 2 ID'>
-    <button type='submit'>Compare</button>
-</form>
+    <form method='GET' action='/comparison' class="inline-form">
+        <input type='number' name='pid1' placeholder='Player 1 ID'>
+        <input type='number' name='pid2' placeholder='Player 2 ID'>
+        <button type='submit'>Compare</button>
+    </form>
+</section>
 
-{% if p1 and p2 %}
-<table>
-    <tr><th>Stat</th><th>{{ p1[0] }}</th><th>{{ p2[0] }}</th></tr>
-    <tr><td>Points</td><td>{{ p1[1] }}</td><td>{{ p2[1] }}</td></tr>
-    <tr><td>Rebounds</td><td>{{ p1[2] }}</td><td>{{ p2[2] }}</td></tr>
-    <tr><td>Assists</td><td>{{ p1[3] }}</td><td>{{ p2[3] }}</td></tr>
-    <tr><td>FG%</td><td>{{ p1[4] }}</td><td>{{ p2[4] }}</td></tr>
-</table>
-{% elif p1 or p2 %}
-<p>One player not found. Check the IDs and try again.</p>
-{% endif %}
+<section class="card">
+    {% if p1 and p2 %}
+    <table>
+        <tr><th>Stat</th><th>{{ p1[0] }}</th><th>{{ p2[0] }}</th></tr>
+        <tr><td>Points</td><td>{{ p1[1] }}</td><td>{{ p2[1] }}</td></tr>
+        <tr><td>Rebounds</td><td>{{ p1[2] }}</td><td>{{ p2[2] }}</td></tr>
+        <tr><td>Assists</td><td>{{ p1[3] }}</td><td>{{ p2[3] }}</td></tr>
+        <tr><td>FG%</td><td>{{ p1[4] }}</td><td>{{ p2[4] }}</td></tr>
+    </table>
+    {% elif p1 or p2 %}
+    <p class="empty-state">One player not found. Check the IDs and try again.</p>
+    {% else %}
+    <p class="empty-state">Enter two player IDs to start a comparison.</p>
+    {% endif %}
+</section>
 
 {% endblock %}

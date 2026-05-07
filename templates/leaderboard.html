@@ -1,27 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Leaderboard</h1>
+<section class="card">
+    <h1>Leaderboard</h1>
+    <p class="muted">Track top performers by your selected metric.</p>
 
-<form method='GET' action='/leaderboard'>
-    <select name='stat'>
-        <option value='points'   {% if stat == 'points'   %}selected{% endif %}>Points</option>
-        <option value='rebounds' {% if stat == 'rebounds' %}selected{% endif %}>Rebounds</option>
-        <option value='assists'  {% if stat == 'assists'  %}selected{% endif %}>Assists</option>
-        <option value='fg_pct'   {% if stat == 'fg_pct'   %}selected{% endif %}>FG%</option>
-    </select>
-    <button type='submit'>Show</button>
-</form>
+    <form method='GET' action='/leaderboard' class="inline-form">
+        <select name='stat'>
+            <option value='points'   {% if stat == 'points'   %}selected{% endif %}>Points</option>
+            <option value='rebounds' {% if stat == 'rebounds' %}selected{% endif %}>Rebounds</option>
+            <option value='assists'  {% if stat == 'assists'  %}selected{% endif %}>Assists</option>
+            <option value='fg_pct'   {% if stat == 'fg_pct'   %}selected{% endif %}>FG%</option>
+        </select>
+        <button type='submit'>Show</button>
+    </form>
+</section>
 
-<table>
-    <tr><th>Player</th><th>Team</th><th>Avg</th></tr>
-    {% for row in results %}
-    <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ "%.1f"|format(row[2]) }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<section class="card">
+    <table>
+        <tr><th>Player</th><th>Team</th><th>Avg</th></tr>
+        {% for row in results %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ "%.1f"|format(row[2]) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
 
 {% endblock %}

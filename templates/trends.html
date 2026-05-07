@@ -1,32 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Trend Analysis</h1>
+<section class="card">
+    <h1>Trend Analysis</h1>
+    <p class="muted">Evaluate recent-season trajectory and scoring stability.</p>
 
-<form method='GET' action='/trends'>
-    <input type='number' name='pid' placeholder='Player ID'>
-    <select name='n'>
-        <option value='5'>Last 5 Seasons</option>
-        <option value='10' selected>Last 10 Seasons</option>
-        <option value='20'>Last 20 Seasons</option>
-    </select>
-    <button type='submit'>Show</button>
-</form>
+    <form method='GET' action='/trends' class="inline-form">
+        <input type='number' name='pid' placeholder='Player ID'>
+        <select name='n'>
+            <option value='5'>Last 5 Seasons</option>
+            <option value='10' selected>Last 10 Seasons</option>
+            <option value='20'>Last 20 Seasons</option>
+        </select>
+        <button type='submit'>Show</button>
+    </form>
+</section>
 
 {% if rows %}
-<p>Average Points: {{ avg_pts }} — Status: <strong>{{ streak }}</strong></p>
-<table>
-    <tr><th>Season</th><th>PTS</th><th>REB</th><th>AST</th><th>FG%</th></tr>
-    {% for row in rows %}
-    <tr>
-        <td>{{ row[0] }}</td>
-        <td>{{ row[1] }}</td>
-        <td>{{ row[2] }}</td>
-        <td>{{ row[3] }}</td>
-        <td>{{ row[4] }}</td>
-    </tr>
-    {% endfor %}
-</table>
+<section class="card">
+    <p class="kpi">Average Points: <strong>{{ avg_pts }}</strong> <span class="muted">| Status: <strong>{{ streak }}</strong></span></p>
+    <table>
+        <tr><th>Season</th><th>PTS</th><th>REB</th><th>AST</th><th>FG%</th></tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+{% else %}
+<section class="card">
+    <p class="empty-state">Submit a player ID to view trend data.</p>
+</section>
 {% endif %}
 
 {% endblock %}

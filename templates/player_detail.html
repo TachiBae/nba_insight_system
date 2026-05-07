@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Player Stats</h1>
+<section class="card">
+    <h1>Player Stats</h1>
+    <p class="muted">Season-average snapshot across key individual metrics.</p>
 
-{% if stats %}
-<table>
-    <tr><th>Avg PTS</th><th>Avg REB</th><th>Avg AST</th><th>FG%</th><th>Avg GP</th></tr>
-    <tr>
-        <td>{{ "%.1f"|format(stats[0]) }}</td>
-        <td>{{ "%.1f"|format(stats[1]) }}</td>
-        <td>{{ "%.1f"|format(stats[2]) }}</td>
-        <td>{{ "%.1f"|format(stats[3]) }}</td>
-        <td>{{ "%.0f"|format(stats[4]) }}</td>
-    </tr>
-</table>
-{% else %}
-<p>No stats found for this player.</p>
-{% endif %}
+    {% if stats and stats[0] is not none %}
+    <table>
+        <tr><th>Avg PTS</th><th>Avg REB</th><th>Avg AST</th><th>FG%</th><th>Avg GP</th></tr>
+        <tr>
+            <td>{{ "%.1f"|format(stats[0]) }}</td>
+            <td>{{ "%.1f"|format(stats[1]) }}</td>
+            <td>{{ "%.1f"|format(stats[2]) }}</td>
+            <td>{{ "%.1f"|format(stats[3]) }}</td>
+            <td>{{ "%.0f"|format(stats[4]) }}</td>
+        </tr>
+    </table>
+    {% else %}
+    <p class="empty-state">No stats found for this player.</p>
+    {% endif %}
 
-<a href='/players'>← Back to Search</a>
+    <a href='/players' class="link-back">Back to Player Search</a>
+</section>
 
 {% endblock %}

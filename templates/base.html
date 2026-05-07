@@ -4,18 +4,29 @@
     <meta charset='UTF-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBA Insight System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='{{ url_for("static", filename="css/style.css") }}'>
 </head>
 <body>
-    <nav>
-        <a href='{{ url_for("index") }}'>Home</a>
-        <a href='{{ url_for("players") }}'>Players</a>
-        <a href='{{ url_for("teams") }}'>Teams</a>
-        <a href='{{ url_for("leaderboard_view") }}'>Leaderboard</a>
-        <a href='{{ url_for("comparison_view") }}'>Comparison</a>
-        <a href='{{ url_for("trends_view") }}'>Trends</a>
-    </nav>
-    <main>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href='{{ url_for("index") }}' class="brand">
+                <span class="brand-mark">NBA</span>
+                <span class="brand-text">Insight System</span>
+            </a>
+            <nav class="main-nav">
+                <a href='{{ url_for("index") }}'>Home</a>
+                <a href='{{ url_for("players") }}'>Players</a>
+                <a href='{{ url_for("teams") }}'>Teams</a>
+                <a href='{{ url_for("leaderboard_view") }}'>Leaderboard</a>
+                <a href='{{ url_for("comparison_view") }}'>Comparison</a>
+                <a href='{{ url_for("trends_view") }}'>Trends</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container page-content">
         {% block content %}{% endblock %}
     </main>
 </body>

@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Team Stats</h1>
+<section class="card">
+    <h1>Team Stats</h1>
+    <p class="muted">Quick overview of team output and ball security trends.</p>
 
-{% if stats %}
-<table>
-    <tr><th>Team</th><th>Avg Score</th><th>Avg Turnovers</th></tr>
-    <tr>
-        <td>{{ stats[0] }}</td>
-        <td>{{ "%.1f"|format(stats[1]) }}</td>
-        <td>{{ "%.1f"|format(stats[2]) }}</td>
-    </tr>
-</table>
-{% else %}
-<p>No stats found for this team.</p>
-{% endif %}
+    {% if stats %}
+    <table>
+        <tr><th>Team</th><th>Avg Score</th><th>Avg Turnovers</th></tr>
+        <tr>
+            <td>{{ stats[0] }}</td>
+            <td>{{ "%.1f"|format(stats[1]) }}</td>
+            <td>{{ "%.1f"|format(stats[2]) }}</td>
+        </tr>
+    </table>
+    {% else %}
+    <p class="empty-state">No stats found for this team.</p>
+    {% endif %}
 
-<a href='/teams'>← Back to Teams</a>
+    <a href='/teams' class="link-back">Back to Teams</a>
+</section>
 
 {% endblock %}

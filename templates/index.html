@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>NBA Game and Player Performance Insight System</h1>
-<p>Welcome! Use the navigation above to explore player stats, team insights, leaderboards, comparisons, and trends.</p>
+<section class="hero card">
+    <p class="eyebrow">Game Intelligence</p>
+    <h1>NBA Performance Insights, Built for Clarity</h1>
+    <p class="muted">Explore player and team analytics with a clean, modern dashboard designed for fast decisions and easy navigation.</p>
+</section>
 
-<ul>
-    <li><a href='/players'>Player Search</a></li>
-    <li><a href='/teams'>Team Insights</a></li>
-    <li><a href='/leaderboard'>Leaderboard</a></li>
-    <li><a href='/comparison'>Player Comparison</a></li>
-    <li><a href='/trends'>Trend Analysis</a></li>
-</ul>
+<section class="grid grid-2">
+    <a href='/players' class="card feature-card">
+        <h2>Player Search</h2>
+        <p>Find player profiles and season averages in seconds.</p>
+    </a>
+    <a href='/teams' class="card feature-card">
+        <h2>Team Insights</h2>
+        <p>Review team-level trends, scoring, and turnover metrics.</p>
+    </a>
+    <a href='/leaderboard' class="card feature-card">
+        <h2>Leaderboard</h2>
+        <p>Rank top performers by points, assists, rebounds, and FG%.</p>
+    </a>
+    <a href='/comparison' class="card feature-card">
+        <h2>Player Comparison</h2>
+        <p>Compare two players side-by-side across key stats.</p>
+    </a>
+    <a href='/trends' class="card feature-card">
+        <h2>Trend Analysis</h2>
+        <p>Inspect progression across recent seasons and detect momentum.</p>
+    </a>
+</section>
 
 {% endblock %}
